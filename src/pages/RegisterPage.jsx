@@ -29,7 +29,8 @@ export default function RegisterPage() {
 
     setLoading(true)
     try {
-      await register(form.username, form.email, form.password)
+      const data = await register(form.username, form.email, form.password)
+      localStorage.setItem('token', data.access_token)
       navigate('/onboarding')
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again.')
